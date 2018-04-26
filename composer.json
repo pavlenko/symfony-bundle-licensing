@@ -1,0 +1,25 @@
+{
+  "name": "pe/symfony-bundle-licensing",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Eugene Pavlenko",
+      "email": "pavlenko.obs@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5.9|>=7.0.8",
+    "symfony/framework-bundle": "~3.4|~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PE\\Bundle\\LicensingBundle\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
