@@ -59,15 +59,17 @@ class PELicensingExtension extends Extension
         }
 
         // Set aliases to services
-        $container->setAlias('pe_licensing.repository.license', new Alias($config['service']['repository_license'], true));
-        $container->setAlias('pe_licensing.manager', new Alias($config['service']['manager'], true));
+        $container->setAlias('pe_licensing.client', new Alias($config['service']['client'], true));
+        $container->setAlias('pe_licensing.server', new Alias($config['service']['server'], true));
+        $container->setAlias('pe_licensing.repository.license', new Alias($config['service']['repository']['license'], true));
 
-        if (isset($config['client'])) {
-            $definition = $container->getDefinition('pe_licensing.client.config');
-            $definition->replaceArgument(0, $config['client']['id']);
-            $definition->replaceArgument(1, $config['client']['server_key']);
-            $definition->replaceArgument(2, $config['client']['server_uri']);
-            $definition->replaceArgument(3, $config['client']['server_ttl']);
-        }
+        // Configure services
+        $definition = $container->getDefinition('pe_licensing.server.default');
+        $definition->replaceArgument(1, $config['server']['key']);
+
+        $definition = $container->getDefinition('pe_licensing.client.default');
+        $definition->replaceArgument(1, $config['server']['key']);
+        $definition->replaceArgument(2, $config['server']['url']);
+        $definition->replaceArgument(4, $config['client']['cache_ttl']);
     }
 }

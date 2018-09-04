@@ -23,7 +23,7 @@ class PELicensingBundle extends Bundle
     private function addCompilerMappingsPass(ContainerBuilder $container)
     {
         $mappings = [
-            realpath(__DIR__ . '/Resources/config/doctrine-mapping') => __NAMESPACE__ . '\Model',
+            realpath(__DIR__ . '/Resources/config/doctrine-mapping') => 'PE\Component\Licensing\Model',
         ];
 
         if (class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {

@@ -1,3 +1,6 @@
+parameters:
+    pe_licensing.server_key: ~
+
 services:
     pe_licensing.object_manager:
         class: Doctrine\Common\Persistence\ObjectManager
@@ -10,30 +13,27 @@ services:
             - '@pe_licensing.object_manager'
             - '%pe_licensing.class.license%'
 
-    pe_licensing.manager.default:
+    pe_licensing.server.default:
         public: true
-        class: PE\Bundle\LicensingBundle\Manager\LicensingManager
+        class: PE\Component\Licensing\Server\Server
         arguments:
             - '@pe_licensing.repository.license'
-
-    pe_licensing.server:
-        public: true
-        class: PE\Bundle\LicensingBundle\Server\Server
-        arguments:
-            - '@pe_licensing.repository.license'
-
-    pe_licensing.client.config:
-        public: true
-        class: PE\Bundle\LicensingBundle\Client\ClientConfig
-        arguments: [~, ~, ~, ~] # Arguments processed in extension
+            - ~
 
     pe_licensing.client.http:
         class: GuzzleHttp\Client
 
-    pe_licensing.client:
+    pe_licensing.client.default:
         public: true
-        class: PE\Bundle\LicensingBundle\Client\Client
+        class: PE\Component\Licensing\Client\Client
         arguments:
-            - '@pe_licensing.client.config'
-            - '@cache.app'
             - '@pe_licensing.client.http'
+            - ~
+            - ~
+            - '@cache.app'
+            - ~
+
+    pe_licensing.controller.server:
+        public: true
+        class: PE\Bundle\LicensingBundle\Controller\ServerController
+        arguments: ['@pe_licensing.server']

@@ -1,4 +1,4 @@
-PE\Bundle\LicensingBundle\Model\License:
+PE\Component\Licensing\Model\License:
     type: mappedSuperclass
     fields:
         key:

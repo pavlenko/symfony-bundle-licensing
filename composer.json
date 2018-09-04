@@ -1,5 +1,9 @@
 {
+  "config": {
+    "sort-packages": true
+  },
   "name": "pe/symfony-bundle-licensing",
+  "description": "Symfony integration of encrypted license client/server library",
   "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
@@ -10,6 +14,7 @@
   ],
   "require": {
     "php": "^5.5.9|>=7.0.8",
+    "pe/component-licensing": "^1.0@dev",
     "symfony/framework-bundle": "~3.4|~4.0"
   },
   "autoload": {

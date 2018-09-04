@@ -1,0 +1,4 @@
+pe_licensing__server:
+    path: /
+    defaults:
+        _controller: pe_licensing.controller.server
